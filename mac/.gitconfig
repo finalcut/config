@@ -1,0 +1,6 @@
+[core]
+	excludesfile = /Users/bill/.gitignore
+	quotepath = false
+[user]
+	name = Bill Rawlinson
+	email = rawlins2@marshall.edu
