@@ -40,11 +40,12 @@ agent_load_env
 
 # agent_run_state: 0=agent running w/ key; 1=agent w/o key; 2= agent not running
 agent_run_state=$(ssh-add -l >| /dev/null 2>&1; echo $?)
+auth_sock="$SSH_AUTH_SOCK"
+auth_sock_len=${#auth_sock}
 
-if [ ! "$SSH_AUTH_SOCK" ] || [ $agent_run_state = 2 ]; then
+
+if [ ! $auth_sock_len ] || [ $agent_run_state = 2 ]; then
     agent_start
-    load_keys
-elif [ "$SSH_AUTH_SOCK" ] && [ $agent_run_state = 1 ]; then
     load_keys
 fi
 
