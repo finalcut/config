@@ -1,4 +1,4 @@
-PATH=$PATH:/c/dev/tools/apache-ant-1.8.4/bin/ant.bat
+PATH=$PATH:/c/dev/tools/apache-ant-1.10.3/bin/ant.bat
 
 alias less='less -r'
 # --show-control-chars: help showing Korean or accented characters
@@ -16,11 +16,12 @@ alias get='git '
 alias cler='clear '
 alias clar='clear '
 alias cl='clear '
-alias warp='cd /c/dev/websites/wcs_ten/site/warp && code .'
+alias warp='cd /c/dev/websites/warp/site/warp && code .'
 alias aemis='cd /c/dev/websites/aemis/site/aemis && code .'
+alias cloud='cd /c/dev/projects/AemisCloud/Aemis/Aemis && code .'
 #used by git to write commit messages.  Point this your vs code probably.
 
-export EDITOR='"/c/Program\ Files\ (x86)/Microsoft\ VS\ Code/Code.exe"'
+# export EDITOR='"/c/Program\ Files\ (x86)/Microsoft\ VS\ Code/Code.exe"'
 
 # start up ssh agent and load my keys
 env=~/.ssh/agent.env
@@ -48,6 +49,8 @@ if [ ! $auth_sock_len ] || [ $agent_run_state = 2 ]; then
     agent_start
     load_keys
 fi
+
+
 
 unset env
 # end start of ssh agent and key loading
