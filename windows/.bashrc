@@ -16,9 +16,10 @@ alias get='git '
 alias cler='clear '
 alias clar='clear '
 alias cl='clear '
-alias warp='cd /c/dev/websites/warp/site/warp && code .'
+alias warp='cd /c/dev/docker/warpbox/app/warp && code .'
 alias aemis='cd /c/dev/websites/aemis/site/aemis && code .'
 alias cloud='cd /c/dev/projects/AemisCloud/Aemis/Aemis && code .'
+alias gfh='git flow hotfix start'
 #used by git to write commit messages.  Point this your vs code probably.
 
 # export EDITOR='"/c/Program\ Files\ (x86)/Microsoft\ VS\ Code/Code.exe"'
@@ -35,6 +36,7 @@ agent_start () {
 load_keys(){
     ssh-add ~/.ssh/id_sbcs_rsa
     ssh-add ~/.ssh/id_finalcut_rsa
+    ssh-add ~/.ssh/bb_sbcs_rsa
 }
 
 agent_load_env
