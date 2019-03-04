@@ -43,8 +43,8 @@ function proxy_on(){
 
    # Update git and npm to use the proxy
    git config --global http.proxy $HTTP_PROXY
-   git config --system http.sslcainfo /bin/curl-ca-bundle.crt
-   git config --global http.sslcainfo /bin/curl-ca-bundle.crt
+   #git config --system http.sslcainfo /bin/curl-ca-bundle.crt
+   #git config --global http.sslcainfo /bin/curl-ca-bundle.crt
    # npm config set proxy $HTTP_PROXY
    # npm config set https-proxy $HTTP_PROXY
    # npm config set strict-ssl false
