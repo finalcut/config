@@ -14,9 +14,8 @@ alias get='git '
 alias cler='clear '
 alias clar='clear '
 alias cl='clear '
-alias warp='cd /c/dev/docker/warpbox/app/warp && code .'
-alias aemis='cd /c/dev/websites/aemis/site/aemis && code .'
-alias cloud='cd /c/dev/projects/AemisCloud/Aemis/Aemis && code .'
+alias api='cd /c/dev/projects/mccoe/webapi && code .'
+alias demo='cd /c/dev/projects/mccoe && code webapi && code react_demo'
 alias gfh='git flow hotfix start'
 alias proxyon='proxy_on'
 alias proxyoff='proxy_off'
@@ -39,12 +38,12 @@ function proxy_on(){
    export FTP_PROXY="$PROXY_SERVER:8080"
    export SOCKS_PROXY="$PROXY_SERVER:5050"
 
-   export NO_PROXY="localhost,127.0.0.1,$USERDNSDOMAIN"
+   export NO_PROXY="gitlab.autobox.local,localhost,127.0.0.1,$USERDNSDOMAIN"
 
    # Update git and npm to use the proxy
    git config --global http.proxy $HTTP_PROXY
-   #git config --system http.sslcainfo /bin/curl-ca-bundle.crt
-   #git config --global http.sslcainfo /bin/curl-ca-bundle.crt
+   git config --system http.sslcainfo /bin/curl-ca-bundle.crt
+   git config --global http.sslcainfo /bin/curl-ca-bundle.crt
    # npm config set proxy $HTTP_PROXY
    # npm config set https-proxy $HTTP_PROXY
    # npm config set strict-ssl false
@@ -84,14 +83,6 @@ function proxy_off(){
    env | grep -e _PROXY -e GIT_ | sort
    echo -e "\nProxy-related environment variables removed."
 }
-
-
-
-
-
-
-
-
 
 
 # start up ssh agent and load my keys
