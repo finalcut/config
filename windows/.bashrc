@@ -1,6 +1,6 @@
 alias less='less -r'
 # --show-control-chars: help showing Korean or accented characters
-alias ls='ls -F --color'
+alias ls='ls -lsa --color'
 alias ll='ls -l'
 alias gs='git status '
 alias ga='git add '
@@ -9,13 +9,16 @@ alias gc='git commit'
 alias gd='git diff'
 alias go='git checkout '
 alias gk='gitk --all&'
+alias push='git push'
+alias pull='git pull'
 alias got='git '
 alias get='git '
 alias cler='clear '
 alias clar='clear '
 alias cl='clear '
+alias mccoe='cd /c/dev/projects/mccoe/'
 alias api='cd /c/dev/projects/mccoe/webapi && code .'
-alias demo='cd /c/dev/projects/mccoe && code webapi && code react_demo'
+alias ui='cd /c/dev/projects/mccoe/ui && code .'
 alias gfh='git flow hotfix start'
 alias proxyon='proxy_on'
 alias proxyoff='proxy_off'
@@ -44,9 +47,9 @@ function proxy_on(){
    git config --global http.proxy $HTTP_PROXY
    git config --system http.sslcainfo /bin/curl-ca-bundle.crt
    git config --global http.sslcainfo /bin/curl-ca-bundle.crt
-   # npm config set proxy $HTTP_PROXY
-   # npm config set https-proxy $HTTP_PROXY
-   # npm config set strict-ssl false
+   npm config set proxy $HTTP_PROXY
+   npm config set https-proxy $HTTP_PROXY
+   npm config set strict-ssl false
    # npm config set registry "http://registry.npmjs.org/"
 
    # optional for debugging; gives you a ton of extra info.  to turn off unset GIT_CURL_VERBOSE
@@ -79,10 +82,20 @@ function proxy_off(){
    git config --global --unset http.sslcainfo
    git config --system --unset http.sslcainfo
 
+   npm config rm proxy
+   npm config rm https-proxy
 
    env | grep -e _PROXY -e GIT_ | sort
    echo -e "\nProxy-related environment variables removed."
 }
+
+
+
+
+
+
+
+
 
 
 # start up ssh agent and load my keys
