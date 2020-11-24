@@ -16,14 +16,15 @@ alias get='git '
 alias cler='clear '
 alias clar='clear '
 alias cl='clear '
-alias mccoe='cd /c/dev/projects/mccoe/'
-alias api='cd /c/dev/projects/mccoe/webapi && code .'
-alias ui='cd /c/dev/projects/mccoe/ui && code .'
-alias gfh='git flow hotfix start'
+alias mca='cd /c/dev/projects/mccoe/'
+alias api='cd /c/dev/projects/mccoe/api && code .'
+alias ui='cd /c/dev/projects/mccoe/ui && code ui.code-workspace'
 alias proxyon='proxy_on'
 alias proxyoff='proxy_off'
+alias cleanup='clean_local_git'
+alias journal='code /c/dev/bills-big-brain'
 #used by git to write commit messages.  Point this your vs code probably.
-export PROXY_SERVER=http://proxy.hud.gov
+export PROXY_SERVER=http://proxy.whatdomain.com #update with the right proxy server
 
 
 # configure proxy for git while on corporate network
@@ -45,6 +46,9 @@ function proxy_on(){
 
    # Update git and npm to use the proxy
    git config --global http.proxy $HTTP_PROXY
+   # for more info on this
+   # see: https://gitlab.cloud-glass.com/mccoe/onboarding/wikis/Development/Git_Questions#ssl-certificate-problem-unable-to-get-local-issuer-certificate
+   # you'll need to know where your certs are; but that wiki should help
    git config --system http.sslcainfo /bin/curl-ca-bundle.crt
    git config --global http.sslcainfo /bin/curl-ca-bundle.crt
    npm config set proxy $HTTP_PROXY
@@ -90,6 +94,9 @@ function proxy_off(){
 }
 
 
+function clean_local_git(){
+  git checkout master && git fetch -p && for branch in `git for-each-ref --format '%(refname) %(upstream:track)' refs/heads | awk '$2 == "[gone]" {sub("refs/heads/", "", $1); print $1}'`; do git branch -D $branch; done && git checkout develop && git pull
+}
 
 
 
@@ -97,8 +104,7 @@ function proxy_off(){
 
 
 
-
-# start up ssh agent and load my keys
+# start up ssh agent and load my keys; if you don't have SSH keys you want to load; you can comment out/delete the rest of the lines in this file.
 env=~/.ssh/agent.env
 
 agent_load_env () { test -f "$env" && . "$env" >| /dev/null ; }
@@ -108,7 +114,7 @@ agent_start () {
     . "$env" >| /dev/null ; }
 
 load_keys(){
-    ssh-add ~/.ssh/id_rsa
+    ssh-add ~/.ssh/id_finalcut_rsa
 }
 
 agent_load_env
